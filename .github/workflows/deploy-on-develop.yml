@@ -1,0 +1,19 @@
+name: Deploy on Develop Push
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository content
+        uses: actions/checkout@v3
+
+      - name: Pull code to specific folder
+        run: |
+          mkdir -p ./deployment_folder
+          cp -r ./* ./deployment_folder
+          echo "Code copied to ./deployment_folder"
